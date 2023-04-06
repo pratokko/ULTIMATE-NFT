@@ -45,9 +45,7 @@ module.exports = async function ({ getNamedAccounts, deployments }) {
     let vrfCoordinatorV2Address, subscriptionId, VRFCoordinatorV2Mock
 
     if (developmentChains.includes(network.name)) {
-         VRFCoordinatorV2Mock = await ethers.getContract(
-            "VRFCoordinatorV2Mock"
-        )
+        VRFCoordinatorV2Mock = await ethers.getContract("VRFCoordinatorV2Mock")
         vrfCoordinatorV2Address = VRFCoordinatorV2Mock.address
 
         const tx = await VRFCoordinatorV2Mock.createSubscription()
@@ -90,6 +88,9 @@ module.exports = async function ({ getNamedAccounts, deployments }) {
         )
         log("Consumer is added")
     }
+
+    //     Successfully verified contract RandomIpfsNft on Etherscan.
+    // https://sepolia.etherscan.io/address/0x360dc198b68CbF357276851F8F0F4B36c16cdfF3#code
 
     if (!developmentChains.includes(network.name)) {
         log("Verifying...")

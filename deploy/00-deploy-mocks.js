@@ -1,6 +1,9 @@
 const { network, ethers } = require("hardhat")
-const { developmentChains } = require("../helper-hardhat-config")
-// const { DECIMALS, INITIAL_PRICE } = require("../helper-hardhat-config")
+const {
+    developmentChains,
+    DECIMALS,
+    INITIAL_PRICE,
+} = require("../helper-hardhat-config")
 
 const BASE_FEE = ethers.utils.parseEther("0.25")
 const GAS_PRICE_LINK = 1e9
@@ -10,7 +13,7 @@ module.exports = async function ({ getNamedAccounts, deployments }) {
     const { deployer } = await getNamedAccounts()
     const chainId = network.config.chainId
 
-    const args = [BASE_FEE, GAS_PRICE_LINK,]
+    const args = [BASE_FEE, GAS_PRICE_LINK]
 
     if (developmentChains.includes(network.name)) {
         log("Local network has been detected now we are deploying mocks...")
@@ -20,11 +23,11 @@ module.exports = async function ({ getNamedAccounts, deployments }) {
             log: true,
             args: args,
         })
-        // await deploy("MockV3Aggregator", {
-        //     from: deployer,
-        //     log: true,
-        //     args: [DECIMALS, INITIAL_PRICE],
-        // })
+        await deploy("MockV3Aggregator", {
+            from: deployer,
+            log: true,
+            args: [DECIMALS, INITIAL_PRICE],
+        })
     }
     log("Mocks deployed")
 

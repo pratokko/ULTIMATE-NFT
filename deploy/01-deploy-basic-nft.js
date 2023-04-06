@@ -20,6 +20,9 @@ module.exports = async function ({ getNamedAccounts, deployments }) {
 
     log("-----------------------------------------")
 
+    //     Successfully verified contract BasicNft on Etherscan.
+    // https://sepolia.etherscan.io/address/0x001e8Bb77b4642FBf026880872523Cc9D0934dcD#code
+
     if (
         !developmentChains.includes(network.name) &&
         process.env.ETHERSCAN_API_KEY
